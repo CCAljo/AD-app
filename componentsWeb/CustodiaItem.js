@@ -28,7 +28,7 @@ const CustodiaItems = ({ custodia, handleDeleteCustodia }) => {
             </View>
             <View style={styles.headerCell}>
               <Text style={styles.headerText}>Estado</Text>
-            </View>
+            </View>            
           </View>
           <View style={styles.dataRow}>
             <View style={styles.dataCell}>
@@ -48,10 +48,19 @@ const CustodiaItems = ({ custodia, handleDeleteCustodia }) => {
             </View>
             <View style={styles.dataCell}>
               <Text style={styles.textContainer}>{custodia.estado}</Text>
-            </View>
+            </View>            
           </View>
         </View>
       </ScrollView>
+      <View style={styles.optionContainer}>
+        <View style={styles.deleteButton}>
+          <TouchableOpacity onPress={() => {
+            handleDeleteCustodia(custodia.id_cus)
+          }}>
+            <Text style={styles.textButtons}>Devolver</Text>
+          </TouchableOpacity>
+        </View>
+      </View>
     </View>
   );
 };
@@ -108,18 +117,18 @@ const styles = StyleSheet.create({
   },
   textButtons: {
     color: '#000000',
-    textAlign: 'center',
+    textAlign: 'center',    
     padding: 7,
     fontSize: 13,
   },
-  optionContainer: {
+  optionContainer: {    
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginLeft: 10,
     marginBottom: 20,
     width: 338,
   },
-  deleteButton: {
+  deleteButton: {    
     justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,
@@ -131,7 +140,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 100,
   },
-  updateButton: {
+  updateButton: {    
     justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,
@@ -144,7 +153,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 100,
   },
-  activateButton: {
+  activateButton: {    
     justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,

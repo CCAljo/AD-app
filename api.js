@@ -236,3 +236,59 @@ export const login = async (cedula, contrasenia) => {
     const data = await response.json();
     return data;
 };
+
+
+
+export const getBuscarPersonaSolicitud = async (cedula_per) => {
+    try {
+        const response = await fetch(`${APIsol}/buscar/${cedula_per}`, {
+            method: 'GET',
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al buscar las solicitudes');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error en getBuscarPersonaSolicitud:', error);
+        throw error;
+    }
+};
+
+export const getBuscarPersonaCustodia = async (cedula_per) => {
+    try {
+        const response = await fetch(`${APIcus}/buscar/${cedula_per}`, {
+            method: 'GET',
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al buscar las custodias');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error en getBuscarPersonaCustodia:', error);
+        throw error;
+    }
+};
+
+export const getBuscarPersonaDevoluciones = async (cedula_per) => {
+    try {
+        const response = await fetch(`${APIdev}/buscar/${cedula_per}`, {
+            method: 'GET',
+        });
+
+        if (!response.ok) {
+            throw new Error('Error al buscar las devoluciones');
+        }
+
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error en getBuscarPersonaDevoluciones:', error);
+        throw error;
+    }
+};

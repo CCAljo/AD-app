@@ -2,7 +2,7 @@ import { View, Text, StyleSheet, TouchableOpacity, ScrollView } from 'react-nati
 import React from 'react';
 import { useNavigation } from "@react-navigation/native";
 
-const CustodiaItems = ({ custodia, handleDeleteCustodia }) => {
+const DevolucionesItems = ({ devoluciones }) => {
 
   const navigation = useNavigation()
 
@@ -12,43 +12,31 @@ const CustodiaItems = ({ custodia, handleDeleteCustodia }) => {
         <View style={styles.tableContainer}>
           <View style={styles.headerRow}>
             <View style={styles.headerCell}>
+              <Text style={styles.headerText}>Id Devolucion</Text>
+            </View>
+            <View style={styles.headerCell}>
               <Text style={styles.headerText}>Id Custodia</Text>
             </View>
             <View style={styles.headerCell}>
-              <Text style={styles.headerText}>Cedula Persona</Text>
+              <Text style={styles.headerText}>Estado Devolucion</Text>
             </View>
             <View style={styles.headerCell}>
-              <Text style={styles.headerText}>Id Equipo</Text>
-            </View>
-            <View style={styles.headerCell}>
-              <Text style={styles.headerText}>Id Solicitud</Text>
-            </View>
-            <View style={styles.headerCell}>
-              <Text style={styles.headerText}>Fecha Custodia</Text>
-            </View>
-            <View style={styles.headerCell}>
-              <Text style={styles.headerText}>Estado</Text>
-            </View>
+              <Text style={styles.headerText}>Fecha Devolucion</Text>
+            </View>       
           </View>
           <View style={styles.dataRow}>
             <View style={styles.dataCell}>
-              <Text style={styles.textContainer}>{custodia.id_cus}</Text>
+              <Text style={styles.textContainer}>{devoluciones.id_dev}</Text>
             </View>
             <View style={styles.dataCell}>
-              <Text style={styles.textContainer}>{custodia.cedula_per}</Text>
+              <Text style={styles.textContainer}>{devoluciones.id_cus}</Text>
             </View>
             <View style={styles.dataCell}>
-              <Text style={styles.textContainer}>{custodia.id_equ}</Text>
+              <Text style={styles.textContainer}>{devoluciones.estado_dev}</Text>
             </View>
             <View style={styles.dataCell}>
-              <Text style={styles.textContainer}>{custodia.id_sol}</Text>
-            </View>
-            <View style={styles.dataCell}>
-              <Text style={styles.textContainer}>{custodia.fecha_cus}</Text>
-            </View>
-            <View style={styles.dataCell}>
-              <Text style={styles.textContainer}>{custodia.estado}</Text>
-            </View>
+              <Text style={styles.textContainer}>{devoluciones.fecha_dev}</Text>
+            </View>          
           </View>
         </View>
       </ScrollView>
@@ -108,18 +96,18 @@ const styles = StyleSheet.create({
   },
   textButtons: {
     color: '#000000',
-    textAlign: 'center',
+    textAlign: 'center',    
     padding: 7,
     fontSize: 13,
   },
-  optionContainer: {
+  optionContainer: {    
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginLeft: 10,
     marginBottom: 20,
     width: 338,
   },
-  deleteButton: {
+  deleteButton: {    
     justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,
@@ -131,7 +119,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 100,
   },
-  updateButton: {
+  updateButton: {    
     justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,
@@ -144,7 +132,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: 100,
   },
-  activateButton: {
+  activateButton: {    
     justifyContent: 'center',
     paddingLeft: 10,
     paddingRight: 10,
@@ -160,4 +148,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default CustodiaItems;
+export default DevolucionesItems;

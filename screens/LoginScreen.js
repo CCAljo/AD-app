@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { View, TextInput, Button, Platform, StyleSheet, Text } from 'react-native';
 import { useNavigation } from "@react-navigation/native";
 
 import { login } from "../api";
 
+import { CedulaContext } from '../componentsWeb/CedulaContext';
+
 const LoginScreen = () => {
+
+    const { cedulaGlobal, setCedulaGlobal } = useContext(CedulaContext);
+
     const [cedula, setCedula] = useState('');
     const [contrasenia, setContrasenia] = useState('');
     const [error, setError] = useState('');
@@ -18,42 +23,23 @@ const LoginScreen = () => {
             // Realizar el inicio de sesión
             const response = await login(cedula, contrasenia);
             const { message, rol } = response;
-
+            console.log('Usuario autenticado:', response);
             // Mostrar mensaje de inicio de sesión exitoso
             console.log(message);
-
+            // Cuando obtengas el valor de la cédula, lo asignas al estado global
+            setCedulaGlobal(cedula);
             // Redirigir a diferentes pantallas según el rol del usuario
             if (rol === 'Tecnico') {
                 navigation.navigate('Tabs'); // Redirigir al screen de Tabs (Técnico)
-            } else if (rol === 'Estudiante') {
+            } else if (rol === 'Estudiante' || rol === 'Docente') {
                 navigation.navigate('TabsPersona'); // Redirigir al screen de HomeScreen (Estudiante)
-            } else if (rol === 'Docente') {
-                navigation.navigate('TabsPersona'); // Redirigir al screen de HomeScreen (Docente)
             }
         } catch (error) {
             // Manejar error de inicio de sesión
             console.error('Error al iniciar sesión:', error);
+            console.log(error.message);
         }
     };
-
-
-    /* const handleLogin = async () => {
-        try {
-            const user = await login(cedula, contrasenia);
-            if (user) {
-                // Lógica cuando la autenticación es exitosa
-                console.log('Usuario autenticado:', user);
-                navigation.navigate("Tabs");
-            } else {
-                // Lógica cuando las credenciales son inválidas
-                setError('Credenciales inválidas');
-            }
-        } catch (error) {
-            // Lógica cuando ocurre un error en la autenticación
-            console.log('Error al autenticar al usuario:', error);
-            setError('Ocurrió un error al iniciar sesión');
-        }
-    }; */
 
     const renderCedulaWarning = () => {
         if (cedula.length < 10) {
@@ -67,10 +53,10 @@ const LoginScreen = () => {
     };
 
     const renderContraseniaWarning = () => {
-        if (contrasenia.length < 4) {
+        if (contrasenia.length < 5) {
             return (
                 <Text>
-                    Ingrese una contraseña valida, minimo 4 caracteres
+                    Ingrese una contraseña valida, minimo 5 caracteres
                 </Text>
             )
         }
